@@ -58,13 +58,13 @@ validate $? "Changing directory to /app"
 rm -rf /app/* &>> $LOGS_FILE
 validate $? "Cleaning /app directory"
 
-unzip /tmp/catalogue.zip
+unzip /tmp/catalogue.zip &>> $LOGS_FILE
 validate $? "Extracting catalogue code"
 
 npm install &>> $LOGS_FILE
 validate $? "Installing nodejs dependencies"
 
-cp catalogue.service /etc/systemd/system/catalogue.service &>> $LOGS_FILE
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGS_FILE
 validate $? "Created systemctl service"
 
 systemctl daemon-reload

@@ -46,10 +46,7 @@ if [ $? -ne 0 ]; then
     echo -e "$B roboshop user is already present. Skipping roboshop user creation$N" | tee -a $LOGS_FILE
  fi
 
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-validate $? "Adding roboshop user"
-
-mkdir -p /app 
+mkdir -p/app 
 validate $? "Creating /app directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 

@@ -28,3 +28,26 @@ if [ $USERID -ne 0 ]; then
     fi
    }
 
+dnf module disable nodejs -y $>> $LOGS_FILE
+validate $? "Disabling nodejs module" 
+
+dnf module enable nodejs:20 -y $>> $LOGS_FILE
+validate $? "Enabling nodejs module"
+
+dnf install nodejs -y $>> $LOGS_FILE
+validate $? "Installing nodejs" 
+
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+validate $? "Adding roboshop user"
+
+mkdir /app 
+validate $? "Creating /app directory"
+
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+validate $? "Downloading catalogue code"
+
+cd /app 
+validate $? "Changing directory to /app"
+
+unzip /tmp/catalogue.zip
+validate $? "Extracting catalogue code"

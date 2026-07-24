@@ -37,7 +37,7 @@ validate $? "Enabling nodejs module"
 dnf install nodejs -y &>> $LOGS_FILE
 validate $? "Installing nodejs" 
 
-id reboshop &>>$LOGS_FILE
+id roboshop &>>$LOGS_FILE
 if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $LOGS_FILE
     validate $? "Adding roboshop user"

@@ -9,6 +9,7 @@ Y="\e[33m"
 B="\e[34m"
 N="\e[0m"
 SCRIPT_DIR=$PWD
+MONGOB_HOST=mongodb.mytechnet.online
 
 
 
@@ -68,7 +69,16 @@ cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGS
 validate $? "Created systemctl service"
 
 systemctl daemon-reload
-systemctl enable catalogue 
+systemctl enable catalogue &>> $LOGS_FILE
 systemctl start catalogue
 validate $? "Starting and enabling catalogue service"
+
+cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGS_FILE
+dnf install mongodb-mongosh -y &>> $LOGS_FILE
+validate $? "Installing mongodb client"
+
+mongosh --host $MONGODB_HOST </app/db/master-data.js
+
+
+
 

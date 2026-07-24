@@ -80,7 +80,7 @@ validate $? "Installing mongodb client"
 INDEX=$(mongosh --host $MONGODB_HOST --quiet --eval  'db.getMongo().getDBNames().indexof("catalogue")') &>> $LOGS_FILE
 
 if [ $INDEX -le 0 ]; then
-       mongosh --host $MONGODB_HOST </app/db/catalogue.js &>> $LOGS_FILE
+       mongosh --host $MONGODB_HOST </app/db/master-data.js &>> $LOGS_FILE
     validate $? "Loading Products"
  else
     echo -e "$B Products already loaded. $Y Skipping catalogue database import $N"

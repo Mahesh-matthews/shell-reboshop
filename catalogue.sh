@@ -39,11 +39,10 @@ validate $? "Installing nodejs"
 
 id reboshop &>> $LOGS_FILE
 if [ $? -ne 0 ]; then
-    echo -e "$Y roboshop user is not present. Creating roboshop user$N" | tee -a $LOGS_FILE
-    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $LOGS_FILE
     validate $? "Adding roboshop user"
  else
-    echo -e "$B roboshop user is already present. Skipping roboshop user creation$N" | tee -a $LOGS_FILE
+    echo -e "$B roboshop user is already present. $Y Skipping roboshop user creation$N" | tee -a $LOGS_FILE
  fi
 
 mkdir -p/app 

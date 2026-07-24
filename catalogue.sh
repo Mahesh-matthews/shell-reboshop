@@ -48,5 +48,5 @@ if [ $? -ne 0 ]; then
 mkdir -p /app &>> $LOGS_FILE
 validate $? "Creating /app directory" 
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>> $LOGS_FILE
 validate $? "Downloading catalogue code"

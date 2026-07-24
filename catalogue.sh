@@ -8,6 +8,7 @@ G="\e[32m"
 Y="\e[33m"
 B="\e[34m"
 N="\e[0m"
+SCRIPT_DIR=$PWD
 
 
 
@@ -54,7 +55,7 @@ validate $? "Downloading catalogue code"
 cd /app 
 validate $? "Changing directory to /app"
 
-rm -rf */app/* &>> $LOGS_FILE
+rm -rf /app/* &>> $LOGS_FILE
 validate $? "Cleaning /app directory"
 
 unzip /tmp/catalogue.zip

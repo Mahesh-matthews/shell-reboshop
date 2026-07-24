@@ -46,7 +46,25 @@ if [ $? -ne 0 ]; then
  fi
 
 mkdir -p /app &>> $LOGS_FILE
-validate $? "Creating /app directory" 
+validate $? "Creating /app directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>> $LOGS_FILE
 validate $? "Downloading catalogue code"
+
+cd /app 
+validate $? "Changing directory to /app"
+
+unzip /tmp/catalogue.zip
+validate $? "Extracting catalogue code"
+
+npm install &>> $LOGS_FILE
+validate $? "Installing nodejs dependencies"
+
+cp catalogue.service /etc/systemd/system/catalogue.service &>> $LOGS_FILE
+validate $? "Created systemctl service"
+
+systemctl daemon-reload
+systemctl enable catalogue 
+systemctl start catalogue
+validate $? "Starting and enabling catalogue service"
+

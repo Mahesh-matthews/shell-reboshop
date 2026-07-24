@@ -77,8 +77,7 @@ cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGS_FILE
 dnf install mongodb-mongosh -y &>> $LOGS_FILE
 validate $? "Installing mongodb client"
 
-INDEX=$(mongosh --host $MONGODB_HOST --quiet --eval  'db.getMongo().getDBNames()'.indexof("catalogue")) &>> $LOGS_FILE
-
+INDEX=$(mongosh --host $MONGODB_HOST --quiet --eval  'db.getMongo().getDBNames().indexof("catalogue")') &>> $LOGS_FILE
 if [ $INDEX -eq -1 ]; then
        mongosh --host $MONGODB_HOST </app/db/catalogue.js &>> $LOGS_FILE
     validate $? "Loading Products"

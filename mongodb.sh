@@ -1,11 +1,8 @@
 #!/bin/bash
 
-#!/bin/bash
-
-# Logs and redirecting output to log file
 USERID=$(id -u)
-LOGS_FOLDER="/var/log/shell-scripting"
-LOGS_FILE="/var/log/shell-scripting/$0.log"
+LOGS_FOLDER="/var/log/shell-reboshop"
+LOGS_FILE="$LOGS_FOLDER/$0.log"
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"

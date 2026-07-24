@@ -45,7 +45,7 @@ if [ $? -ne 0 ]; then
     echo -e "$B roboshop user is already present. $Y Skipping roboshop user creation$N"
  fi
 
-mkdir -p/app 
+mkdir -p /app 
 validate $? "Creating /app directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
